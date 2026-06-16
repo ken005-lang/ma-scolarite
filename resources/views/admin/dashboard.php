@@ -89,30 +89,30 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
     <div class="sb-divider"></div>
     <nav class="sb-nav">
       <a href="/admin/dashboard" class="sb-item <?= $vueCourante==='dashboard'?'active':'' ?>">
-        <span class="sb-ic">🏠</span> Tableau de bord
+        Tableau de bord
       </a>
       <a href="/admin/dashboard?vue=messagerie" class="sb-item <?= $vueCourante==='messagerie'?'active':'' ?>">
-        <span class="sb-ic">📋</span> Candidatures
+        Candidatures
         <span class="badge-notif"><?= $nbCandidaturesAttente ?></span>
       </a>
       <a href="#" class="sb-item" onclick="showToast('Section Paiements')">
-        <span class="sb-ic">💰</span> Paiements
+        Paiements
         <span class="badge-notif"><?= $nbPaiementsAttente ?></span>
       </a>
       <a href="#" class="sb-item" onclick="showToast('Section Étudiants')">
-        <span class="sb-ic">👥</span> Étudiants
+        Étudiants
       </a>
       <a href="#" class="sb-item" onclick="showToast('Section Documents')">
-        <span class="sb-ic">📁</span> Documents
+        Documents
       </a>
       <a href="/admin/dashboard?vue=messagerie" class="sb-item">
-        <span class="sb-ic">📬</span> Messagerie
+        Messagerie
         <span class="badge-notif"><?= $nbMessagesNonLus ?></span>
       </a>
     </nav>
     <div class="sb-divider"></div>
     <form method="POST" action="/admin/deconnexion">
-      <button type="submit" class="sb-logout" style="border:none;background:none;width:100%;text-align:left;">⬅ Se déconnecter</button>
+      <button type="submit" class="sb-logout" style="border:none;background:none;width:100%;text-align:left;">Se déconnecter</button>
     </form>
   </aside>
 
