@@ -19,8 +19,8 @@
 <?php
 // ── Données de simulation ────────────────────
 $etudiant = [
-  'nom'       => 'KOUADIO',
-  'prenom'    => 'Jean',
+  'nom'       => 'CAPE',
+  'prenom'    => 'kenania',
   'matricule' => 'MAT-2026-0042',
   'filiere'   => 'Informatique',
   'niveau'    => 'Licence 1',
@@ -47,28 +47,28 @@ $messages = [
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sb-header">
-      <div class="sb-brand"><span class="sb-brand-icon">📚</span> Ma Scolarité</div>
+      <div class="sb-brand">Ma Scolarité</div>
     </div>
     <div class="sb-user">
-      <div class="sb-avatar">🎓</div>
+      <div class="sb-avatar"></div>
       <div class="sb-name"><?= $etudiant['prenom'].' '.$etudiant['nom'] ?></div>
       <div class="sb-mat"><?= $etudiant['matricule'] ?></div>
       <span class="sb-role"><?= $etudiant['niveau'] ?></span>
     </div>
     <div class="sb-divider"></div>
     <nav class="sb-nav">
-      <a href="/portail/dashboard" class="sb-item active"><span class="sb-ic">🏠</span> Tableau de bord</a>
-      <a href="/portail/paiement"  class="sb-item"><span class="sb-ic">💳</span> Payer ma scolarité</a>
+      <a href="/portail/dashboard" class="sb-item active">Tableau de bord</a>
+      <a href="/portail/paiement"  class="sb-item">Payer ma scolarité</a>
       <a href="/portail/messages"  class="sb-item">
-        <span class="sb-ic">📬</span> Messagerie
+        Messagerie
         <?php if($nbMessagesNonLus > 0): ?><span class="badge-notif"><?= $nbMessagesNonLus ?></span><?php endif; ?>
       </a>
-      <a href="/portail/reduction" class="sb-item"><span class="sb-ic">📉</span> Demande de réduction</a>
-      <a href="#" class="sb-item" id="chatbot-trigger-link"><span class="sb-ic">🤖</span> Aide / Chatbot</a>
+      <a href="/portail/reduction" class="sb-item">Demande de réduction</a>
+      <a href="#" class="sb-item" id="chatbot-trigger-link">Aide / Chatbot</a>
     </nav>
     <div class="sb-divider"></div>
     <form method="POST" action="/portail/deconnexion">
-      <button type="submit" class="sb-logout" style="border:none;background:none;width:100%;text-align:left;">⬅ Se déconnecter</button>
+      <button type="submit" class="sb-logout" style="border:none;background:none;width:100%;text-align:left;">Se déconnecter</button>
     </form>
   </aside>
 
@@ -79,7 +79,7 @@ $messages = [
     <div class="topbar">
       <span class="topbar-title">Tableau de bord</span>
       <div class="topbar-right">
-        <span class="topbar-date">📅 <?= date('d F Y') ?></span>
+        <span class="topbar-date"><?= date('d F Y') ?></span>
         <span class="badge badge-primary"><?= $etudiant['filiere'] ?> — <?= $etudiant['niveau'] ?></span>
       </div>
     </div>
@@ -89,25 +89,25 @@ $messages = [
       <!-- KPI CARDS -->
       <div class="kpi-grid">
         <div class="kpi-card">
-          <div class="kpi-icon" style="background:var(--warning-light);">⏳</div>
+          <div class="kpi-icon" style="background:var(--warning-light);"></div>
           <div class="kpi-label">Solde restant</div>
           <div class="kpi-value" style="color:var(--warning);"><?= number_format($montant_restant,0,',',' ') ?> FCFA</div>
           <div class="kpi-sub">sur <?= number_format($etudiant['montant_total'],0,',',' ') ?> FCFA total</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-icon" style="background:var(--primary-light);">✅</div>
+          <div class="kpi-icon" style="background:var(--primary-light);"></div>
           <div class="kpi-label">Versements effectués</div>
           <div class="kpi-value" style="color:var(--primary);">2 / 5</div>
           <div class="kpi-sub">Prochain : 30 juin 2026</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-icon" style="background:var(--danger-light);">📅</div>
+          <div class="kpi-icon" style="background:var(--danger-light);"></div>
           <div class="kpi-label">Date limite de solde</div>
           <div class="kpi-value" style="color:var(--danger);font-size:16px;"><?= $etudiant['date_limite'] ?></div>
           <div class="kpi-sub">203 jours restants</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-icon" style="background:var(--accent-light);">🎓</div>
+          <div class="kpi-icon" style="background:var(--accent-light);"></div>
           <div class="kpi-label">Statut scolarité</div>
           <div class="kpi-value" style="color:var(--accent);">En cours</div>
           <div class="kpi-sub"><?= $etudiant['filiere'] ?> — <?= $etudiant['niveau'] ?></div>
@@ -132,7 +132,7 @@ $messages = [
       <!-- CTA PAIEMENT -->
       <div class="cta-band">
         <div>
-          <h3>💳 Payer ma scolarité maintenant</h3>
+          <h3>Payer ma scolarité maintenant</h3>
           <div class="op-pills" style="margin-top:8px;">
             <span class="op-pill">🌊 Wave</span>
             <span class="op-pill">🟠 Orange Money</span>
@@ -158,13 +158,13 @@ $messages = [
             </div>
             <span class="badge badge-<?= $p['operateur']==='Physique'?'grey':'primary' ?>"><?= $p['operateur'] ?></span>
             <span class="badge badge-<?= $p['statut']==='confirme'?'accent':'warning' ?>">
-              <?= $p['statut']==='confirme' ? '✅ Confirmé' : '⏳ En attente' ?>
+              <?= $p['statut']==='confirme' ? 'Confirmé' : 'En attente' ?>
             </span>
           </div>
           <?php endforeach; ?>
           <div class="card-divider"></div>
           <div style="background:var(--grey-100);border:1px solid var(--grey-300);border-radius:var(--radius-sm);padding:14px;">
-            <div style="font-size:12px;font-weight:700;color:var(--dark);margin-bottom:8px;">🏦 Paiement physique en banque</div>
+            <div style="font-size:12px;font-weight:700;color:var(--dark);margin-bottom:8px;">Paiement physique en banque</div>
             <input class="form-input" type="text" placeholder="Réf. NSIA / UBA — Ex : NSIA-2026-004210" style="margin-bottom:8px;"/>
             <button class="btn btn-ghost btn-sm btn-full" onclick="showToast('Référence soumise pour validation','success')">Soumettre →</button>
           </div>
@@ -191,8 +191,8 @@ $messages = [
           <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--grey-600);margin-bottom:10px;">Envoyer un message</div>
           <textarea class="form-input form-textarea" rows="3" placeholder="Écrivez votre message à l'administration…"></textarea>
           <div style="display:flex;gap:10px;margin-top:10px;">
-            <button class="btn btn-primary btn-sm" onclick="showToast('Message envoyé à l\'administration ✅','success')">✉️ Envoyer</button>
-            <a href="/portail/reduction" class="btn btn-ghost btn-sm">📄 Demande de réduction</a>
+            <button class="btn btn-primary btn-sm" onclick="showToast('Message envoyé à l\'administration ✅','success')">Envoyer</button>
+            <a href="/portail/reduction" class="btn btn-ghost btn-sm">Demande de réduction</a>
           </div>
         </div>
 
@@ -202,10 +202,10 @@ $messages = [
 </div><!-- /app-layout -->
 
 <!-- CHATBOT -->
-<button class="fab" id="chatbot-fab" title="Aide chatbot">🤖</button>
+<button class="fab" id="chatbot-fab" title="Aide chatbot"></button>
 <div class="chatbot-modal" id="chatbot-modal">
   <div class="cb-header">
-    <h4>🤖 Assistant Ma Scolarité</h4>
+    <h4>Assistant Ma Scolarité</h4>
     <button id="chatbot-close">✕</button>
   </div>
   <div class="cb-messages" id="chatbot-messages"></div>
