@@ -31,25 +31,25 @@
     <nav class="sb-nav">
       <a href="/portail/dashboard"
          class="sb-item <?= (str_contains($_SERVER['REQUEST_URI'], 'dashboard') ? 'active' : '') ?>">
-        <span class="sb-ic">🏠</span> Tableau de bord
+        Tableau de bord
       </a>
       <a href="/portail/paiement"
          class="sb-item <?= (str_contains($_SERVER['REQUEST_URI'], 'paiement') ? 'active' : '') ?>">
-        <span class="sb-ic">💳</span> Payer ma scolarité
+        Payer ma scolarité
       </a>
       <a href="/portail/messages"
          class="sb-item <?= (str_contains($_SERVER['REQUEST_URI'], 'messages') ? 'active' : '') ?>">
-        <span class="sb-ic">📬</span> Messagerie
+        Messagerie
         <?php if (!empty($nbMessagesNonLus)): ?>
           <span class="badge-notif"><?= $nbMessagesNonLus ?></span>
         <?php endif; ?>
       </a>
       <a href="/portail/reduction"
          class="sb-item <?= (str_contains($_SERVER['REQUEST_URI'], 'reduction') ? 'active' : '') ?>">
-        <span class="sb-ic">📉</span> Demande de réduction
+        Demande de réduction
       </a>
       <a href="#" class="sb-item" id="chatbot-trigger-link">
-        <span class="sb-ic">🤖</span> Aide / Chatbot
+        Aide / Chatbot
       </a>
     </nav>
 

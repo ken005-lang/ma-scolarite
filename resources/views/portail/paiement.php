@@ -64,14 +64,14 @@ $nbMessagesNonLus = 1;
     </div>
     <div class="sb-divider"></div>
     <nav class="sb-nav">
-      <a href="/portail/dashboard" class="sb-item"><span class="sb-ic">🏠</span> Tableau de bord</a>
-      <a href="/portail/paiement"  class="sb-item active"><span class="sb-ic">💳</span> Payer ma scolarité</a>
+      <a href="/portail/dashboard" class="sb-item">Tableau de bord</a>
+      <a href="/portail/paiement"  class="sb-item active">Payer ma scolarité</a>
       <a href="/portail/messages"  class="sb-item">
-        <span class="sb-ic">📬</span> Messagerie
+        Messagerie
         <?php if($nbMessagesNonLus > 0): ?><span class="badge-notif"><?= $nbMessagesNonLus ?></span><?php endif; ?>
       </a>
-      <a href="/portail/reduction" class="sb-item"><span class="sb-ic">📉</span> Demande de réduction</a>
-      <a href="#" class="sb-item" id="chatbot-trigger-link"><span class="sb-ic">🤖</span> Aide / Chatbot</a>
+      <a href="/portail/reduction" class="sb-item">Demande de réduction</a>
+      <a href="#" class="sb-item" id="chatbot-trigger-link">Aide / Chatbot</a>
     </nav>
     <div class="sb-divider"></div>
     <form method="POST" action="/portail/deconnexion">

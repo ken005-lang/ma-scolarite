@@ -207,7 +207,7 @@
       <div class="inscrire-section">
         <!-- Bouton caché par défaut, visible après téléchargement -->
         <a href="/ecoles/ites/candidature" class="btn hidden" id="btn-inscrire">
-          ✅ S'inscrire à cette école
+          S'inscrire à cette école
         </a>
 
         <!-- Message avant téléchargement -->
