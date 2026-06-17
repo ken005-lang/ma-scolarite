@@ -42,15 +42,6 @@
       <h2>Espace Étudiant</h2>
       <p class="auth-sub">Connectez-vous avec votre matricule pour accéder à votre portail.</p>
 
-      <!-- Info démo -->
-      <div class="alert alert-info" style="margin-bottom:24px;">
-        <span>🎬</span>
-        <div>
-          <strong>Simulation :</strong> matricule
-          <code style="background:rgba(24,127,228,.12);padding:2px 8px;border-radius:4px;font-weight:700;">MAT-2026-0042</code>
-        </div>
-      </div>
-
       <!-- Formulaire : matricule uniquement -->
       <form onsubmit="return handleLogin(event)">
         <div style="display:flex;flex-direction:column;gap:20px;">

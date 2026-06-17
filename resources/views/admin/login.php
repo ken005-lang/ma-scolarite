@@ -63,14 +63,6 @@
         <h2 style="margin-bottom:6px;">Accès Administration</h2>
         <p class="auth-sub">Connectez-vous avec vos identifiants administrateur.</p>
 
-        <div class="alert alert-info" style="margin-bottom:24px;">
-          <span>🎬</span>
-          <div>
-            <strong>Simulation :</strong> email
-            <code style="background:rgba(24,127,228,.12);padding:2px 8px;border-radius:4px;">admin@ites.ci</code>
-          </div>
-        </div>
-
         <form onsubmit="return handleAdminLogin(event)">
           <div style="display:flex;flex-direction:column;gap:18px;">
             <div class="form-group">

@@ -21,9 +21,9 @@
 
     <div class="sb-user">
       <div class="sb-avatar">🎓</div>
-      <div class="sb-name"><?= htmlspecialchars($etudiant['nom'] . ' ' . $etudiant['prenom']) ?></div>
-      <div class="sb-mat"><?= htmlspecialchars($etudiant['matricule']) ?></div>
-      <span class="sb-role"><?= htmlspecialchars($etudiant['niveau']) ?></span>
+      <div class="sb-name"><?= htmlspecialchars($etudiant['nom'] ?? 'Étudiant') . ' ' . htmlspecialchars($etudiant['prenom'] ?? '') ?></div>
+      <div class="sb-mat"><?= htmlspecialchars($etudiant['matricule'] ?? 'MAT-XXXX-XXXX') ?></div>
+      <span class="sb-role"><?= htmlspecialchars($etudiant['niveau'] ?? 'Licence') ?></span>
     </div>
 
     <div class="sb-divider"></div>
@@ -71,7 +71,7 @@
       <div class="topbar-right">
         <span class="topbar-date">📅 <?= date('l d F Y', strtotime('now')) ?></span>
         <span class="badge badge-primary">
-          <?= htmlspecialchars($etudiant['filiere']) ?> — <?= htmlspecialchars($etudiant['niveau']) ?>
+          <?= htmlspecialchars($etudiant['filiere'] ?? 'Informatique') ?> — <?= htmlspecialchars($etudiant['niveau'] ?? 'Licence') ?>
         </span>
       </div>
     </div>
