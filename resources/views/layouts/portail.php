@@ -44,10 +44,7 @@
           <span class="badge-notif"><?= $nbMessagesNonLus ?></span>
         <?php endif; ?>
       </a>
-      <a href="/portail/reduction"
-         class="sb-item <?= (str_contains($_SERVER['REQUEST_URI'], 'reduction') ? 'active' : '') ?>">
-        Demande de réduction
-      </a>
+      <!-- 'Demande de réduction' supprimée -->
       <a href="#" class="sb-item" id="chatbot-trigger-link">
         Aide / Chatbot
       </a>

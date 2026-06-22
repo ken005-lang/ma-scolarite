@@ -37,8 +37,8 @@
 <body style="background:var(--bg);">
 <?php
 $etudiant = [
-  'nom'           => 'KOUADIO',
-  'prenom'        => 'Jean',
+  'nom'           => 'CAPE',
+  'prenom'        => 'Kenania',
   'matricule'     => 'MAT-2026-0042',
   'filiere'       => 'Informatique',
   'niveau'        => 'Licence 1',
@@ -70,7 +70,7 @@ $nbMessagesNonLus = 1;
         Messagerie
         <?php if($nbMessagesNonLus > 0): ?><span class="badge-notif"><?= $nbMessagesNonLus ?></span><?php endif; ?>
       </a>
-      <a href="/portail/reduction" class="sb-item">Demande de réduction</a>
+      <!-- 'Demande de réduction' supprimée -->
       <a href="#" class="sb-item" id="chatbot-trigger-link">Aide / Chatbot</a>
     </nav>
     <div class="sb-divider"></div>
@@ -107,19 +107,15 @@ $nbMessagesNonLus = 1;
               <input type="hidden" id="operateur_choisi" value=""/>
               <div class="operators-grid">
                 <div class="op-card" data-operateur="wave" onclick="choisirOp(this)">
-                  <div class="op-icon">🌊</div>
                   <div class="op-name" style="color:#0E9CE0;">Wave</div>
                 </div>
                 <div class="op-card" data-operateur="orange_money" onclick="choisirOp(this)">
-                  <div class="op-icon">🟠</div>
                   <div class="op-name" style="color:#FF6600;">Orange Money</div>
                 </div>
                 <div class="op-card" data-operateur="mtn" onclick="choisirOp(this)">
-                  <div class="op-icon">🟡</div>
                   <div class="op-name" style="color:#CC9900;">MTN MoMo</div>
                 </div>
                 <div class="op-card" data-operateur="moov" onclick="choisirOp(this)">
-                  <div class="op-icon">🔵</div>
                   <div class="op-name" style="color:var(--primary);">Moov Money</div>
                 </div>
               </div>
@@ -161,18 +157,10 @@ $nbMessagesNonLus = 1;
             <!-- Paiement physique -->
             <div class="card">
               <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:8px;">🏦 Paiement physique en banque</div>
-              <p style="font-size:13px;color:var(--grey-600);margin-bottom:12px;line-height:1.6;">
-                Payé en agence NSIA ou UBA ? Entrez votre référence unique
-                <strong style="color:var(--primary);">SCO-ETU0042-T3-2026</strong> à la banque,
-                puis soumettez le N° de reçu ci-dessous pour validation par l'administration.
-              </p>
-              <div class="ref-box">
-                <div class="ref-code">SCO-ETU0042-T3-2026</div>
-                <div class="ref-hint">Votre référence unique de paiement</div>
-              </div>
+              <!-- Description de paiement physique supprimée -->
+              <!-- ref-box supprimée -->
               <div class="form-group" style="margin-top:12px;">
-                <label class="form-label">N° de reçu bancaire</label>
-                <input class="form-input" type="text" id="ref_bancaire" placeholder="Ex : NSIA-2026-004210"/>
+                <input class="form-input" type="text" id="ref_bancaire" placeholder="N° de reçu bancaire"/>
               </div>
               <button type="button" class="btn btn-ghost btn-full" style="margin-top:10px;"
                       onclick="soumettreRefBancaire()">
@@ -213,10 +201,7 @@ $nbMessagesNonLus = 1;
                   <span class="recap-key">Numéro</span>
                   <span id="recap-tel">—</span>
                 </div>
-                <div class="recap-line">
-                  <span class="recap-key">Référence</span>
-                  <span style="font-size:11px;color:var(--primary);">SCO-ETU0042-T3-2026</span>
-                </div>
+                <!-- Ligne 'Référence' supprimée par demande utilisateur -->
                 <div class="recap-line">
                   <span class="recap-key">Montant</span>
                   <span id="recap-montant" style="color:var(--primary);">—</span>
@@ -277,7 +262,7 @@ $nbMessagesNonLus = 1;
             </div>
             <div class="recap-line">
               <span class="recap-key">Référence</span>
-              <span style="font-size:12px;color:var(--primary);">SCO-ETU0042-T3-2026</span>
+              <span id="succes-ref" style="font-size:12px;color:var(--primary);">—</span>
             </div>
             <div class="recap-line">
               <span class="recap-key">Nouveau solde restant</span>

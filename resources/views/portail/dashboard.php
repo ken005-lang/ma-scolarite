@@ -13,6 +13,9 @@
     .pay-left  { display:flex; flex-direction:column; gap:3px; }
     .pay-amt   { font-weight:700; color:var(--dark); font-size:14px; }
     .pay-date  { font-size:11px; color:var(--grey-600); }
+    .file-uploader { width:100%; border:1px dashed var(--grey-200); background:var(--white); padding:18px; border-radius:8px; display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer; }
+    .file-uploader .fu-icon { font-size:28px; margin-bottom:8px; }
+    .file-uploader .fu-text { font-size:13px; color:var(--grey-700); }
   </style>
 </head>
 <body style="background:var(--bg);">
@@ -20,7 +23,7 @@
 // ── Données de simulation ────────────────────
 $etudiant = [
   'nom'       => 'CAPE',
-  'prenom'    => 'kenania',
+  'prenom'    => 'Kenania',
   'matricule' => 'MAT-2026-0042',
   'filiere'   => 'Informatique',
   'niveau'    => 'Licence 1',
@@ -31,10 +34,10 @@ $etudiant = [
 $montant_restant = $etudiant['montant_total'] - $etudiant['montant_paye'];
 $pct = round(($etudiant['montant_paye'] / $etudiant['montant_total']) * 100);
 $nbMessagesNonLus = 1;
+$etudiant['montant_paye'] = 230000;
 $paiements = [
   ['date'=>'12 avr. 2026','montant'=>110000,'operateur'=>'Wave','statut'=>'confirme'],
-  ['date'=>'02 mars 2026','montant'=>110000,'operateur'=>'Orange Money','statut'=>'confirme'],
-  ['date'=>'Réf. NSIA soumise','montant'=>0,'operateur'=>'Physique','statut'=>'en_attente'],
+  // Entrée '02 mars 2026' (Orange Money) supprimée sur demande
 ];
 $messages = [
   ['from'=>'Administration ITES II Plateaux','text'=>'Rappel : prochaine tranche de 90 000 FCFA due le 30 juin 2026.','time'=>'1 juin','unread'=>true],
@@ -63,7 +66,7 @@ $messages = [
         Messagerie
         <?php if($nbMessagesNonLus > 0): ?><span class="badge-notif"><?= $nbMessagesNonLus ?></span><?php endif; ?>
       </a>
-      <a href="/portail/reduction" class="sb-item">Demande de réduction</a>
+      <!-- 'Demande de réduction' supprimée -->
       <a href="#" class="sb-item" id="chatbot-trigger-link">Aide / Chatbot</a>
     </nav>
     <div class="sb-divider"></div>
@@ -108,8 +111,8 @@ $messages = [
         </div>
         <div class="kpi-card">
           <div class="kpi-icon" style="background:var(--accent-light);">🎓</div>
-          <div class="kpi-label">Statut scolarité</div>
-          <div class="kpi-value" style="color:var(--accent);">En cours</div>
+          <div class="kpi-label">Statut SCOLAIRE</div>
+          <div class="kpi-value" style="color:var(--accent);">Affecté</div>
           <div class="kpi-sub"><?= $etudiant['filiere'] ?> — <?= $etudiant['niveau'] ?></div>
         </div>
       </div>
@@ -134,10 +137,12 @@ $messages = [
         <div>
           <h3>💳 Payer ma scolarité maintenant</h3>
           <div class="op-pills" style="margin-top:8px;">
-            <span class="op-pill">🌊 Wave</span>
-            <span class="op-pill">🟠 Orange Money</span>
-            <span class="op-pill">🟡 MTN MoMo</span>
-            <span class="op-pill">🔵 Moov Money</span>
+            <span class="op-pill">Wave</span>
+            <span class="op-pill">Orange Money</span>
+            <span class="op-pill">MTN MoMo</span>
+            <span class="op-pill">Moov Money</span>
+            <!-- Nouveau pill pour notifier un paiement physique (couleur sidebar) -->
+            <span class="op-pill" style="background:var(--primary-dark);color:#ffffff;border-color:var(--primary-dark);">Notifier un paiement physique</span>
           </div>
         </div>
         <a href="/portail/paiement" class="btn btn-white">Payer maintenant →</a>
@@ -150,7 +155,9 @@ $messages = [
         <div class="card">
           <div class="card-title">Historique des versements</div>
           <div class="card-divider"></div>
-          <?php foreach($paiements as $p): ?>
+          <?php foreach($paiements as $p): 
+            if($p['operateur'] === 'Physique') continue; // supprime l'entrée 'Physique' demandée
+          ?>
           <div class="pay-row">
             <div class="pay-left">
               <span class="pay-amt"><?= $p['montant'] > 0 ? number_format($p['montant'],0,',',' ').' FCFA' : '— FCFA' ?></span>
@@ -162,12 +169,7 @@ $messages = [
             </span>
           </div>
           <?php endforeach; ?>
-          <div class="card-divider"></div>
-          <div style="background:var(--grey-100);border:1px solid var(--grey-300);border-radius:var(--radius-sm);padding:14px;">
-            <div style="font-size:12px;font-weight:700;color:var(--dark);margin-bottom:8px;">🏦 Paiement physique en banque</div>
-            <input class="form-input" type="text" placeholder="Réf. NSIA / UBA — Ex : NSIA-2026-004210" style="margin-bottom:8px;"/>
-            <button class="btn btn-ghost btn-sm btn-full" onclick="showToast('Référence soumise pour validation','success')">Soumettre →</button>
-          </div>
+          
         </div>
 
         <!-- Messagerie -->
@@ -191,8 +193,21 @@ $messages = [
           <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--grey-600);margin-bottom:10px;">Envoyer un message</div>
           <textarea class="form-input form-textarea" rows="3" placeholder="Écrivez votre message à l'administration…"></textarea>
           <div style="display:flex;gap:10px;margin-top:10px;">
-            <button class="btn btn-primary btn-sm" onclick="showToast('Message envoyé à l\'administration ✅','success')">✉️ Envoyer</button>
-            <a href="/portail/reduction" class="btn btn-ghost btn-sm">📄 Demande de réduction</a>
+              <button class="btn btn-primary btn-sm" onclick="showToast('Message envoyé à l\'administration ✅','success')">✉️ Envoyer</button>
+            </div>
+
+            <!-- Champ d'upload PDF pour demande de réduction -->
+            <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
+              <div class="file-uploader" id="reduction-uploader" tabindex="0" role="button" aria-label="Téléverser un justificatif PDF">
+                <div class="fu-icon">📤</div>
+                <div class="fu-text">Cliquez ou déposez un fichier PDF ici</div>
+                <input type="file" id="reduction-file" name="reduction_file" accept="application/pdf" style="display:none" />
+              </div>
+              <div style="font-size:12px;color:var(--grey-600);">Téléversez ici votre document de demande de réduction (en format PDF s'il vous plaît).</div>
+              <div>
+                <a href="/portail/reduction" class="btn btn-ghost btn-sm">📄 Demande de réduction</a>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -217,6 +232,17 @@ $messages = [
 
 <div class="toast-container"></div>
 <script src="/js/app.js"></script>
+<script>
+  const uploader = document.getElementById('reduction-uploader');
+  const fileInput = document.getElementById('reduction-file');
+  uploader?.addEventListener('click', () => fileInput?.click());
+  uploader?.addEventListener('keydown', (e) => { if(e.key==='Enter' || e.key===' ') fileInput?.click(); });
+  fileInput?.addEventListener('change', (ev) => {
+    const f = ev.target.files && ev.target.files[0];
+    const txt = document.querySelector('#reduction-uploader .fu-text');
+    if(f) txt.textContent = f.name;
+  });
+</script>
 <script>
   document.getElementById('chatbot-trigger-link')?.addEventListener('click', e => {
     e.preventDefault();

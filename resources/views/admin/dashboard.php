@@ -421,7 +421,7 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
           <div class="card-divider"></div>
           <?php
           $msgs = [
-            ['nom'=>'KOUADIO Jean','mat'=>'MAT-2026-0042','msg'=>'Bonjour, je voudrais savoir si ma référence bancaire NSIA-2026-00420 a bien été reçue ?','time'=>'11 juin 2026','unread'=>true],
+            ['nom'=>'Kenania CAPE','mat'=>'MAT-2026-0042','msg'=>'Bonjour, je voudrais savoir si ma référence bancaire NSIA-2026-00420 a bien été reçue ?','time'=>'11 juin 2026','unread'=>true],
             ['nom'=>'DIABATÉ Aminata','mat'=>'MAT-2026-0015','msg'=>'Est-il possible d\'obtenir un délai supplémentaire pour le paiement de ma 3ème tranche ?','time'=>'09 juin 2026','unread'=>true],
             ['nom'=>'N\'GORAN Paul','mat'=>'MAT-2026-0029','msg'=>'Merci pour la confirmation de mon versement. Pouvez-vous m\'envoyer un reçu officiel PDF ?','time'=>'08 juin 2026','unread'=>false],
           ];
