@@ -1,3 +1,4 @@
+<?php setlocale(LC_TIME, 'fr_FR.UTF-8'); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tableau de bord — Portail Étudiant</title>
   <link rel="stylesheet" href="/css/app.css"/>
+  <!-- Favicon using 📚 emoji as SVG data URI -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📚</text></svg>">
   <style>
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     .pay-row { display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-radius:8px; margin-bottom:6px; font-size:13px; }
@@ -22,7 +25,7 @@
 <?php
 // ── Données de simulation ────────────────────
 $etudiant = [
-  'nom'       => 'CAPE',
+  'nom'       => 'CAPÉ',
   'prenom'    => 'Kenania',
   'matricule' => 'MAT-2026-0042',
   'filiere'   => 'Informatique',
@@ -54,7 +57,7 @@ $messages = [
     </div>
     <div class="sb-user">
       <div class="sb-avatar">🎓</div>
-      <div class="sb-name"><?= $etudiant['prenom'].' '.$etudiant['nom'] ?></div>
+      <div class="sb-name"><?= $etudiant['nom'].' '.$etudiant['prenom'] ?></div>
       <div class="sb-mat"><?= $etudiant['matricule'] ?></div>
       <span class="sb-role"><?= $etudiant['niveau'] ?></span>
     </div>
@@ -82,7 +85,7 @@ $messages = [
     <div class="topbar">
       <span class="topbar-title">Tableau de bord</span>
       <div class="topbar-right">
-        <span class="topbar-date">📅 <?= date('d F Y') ?></span>
+        <span class="topbar-date">📅 <?= (new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE, null, null, 'dd MMMM yyyy'))->format(new DateTime()) ?></span>
         <span class="badge badge-primary"><?= $etudiant['filiere'] ?> — <?= $etudiant['niveau'] ?></span>
       </div>
     </div>
@@ -165,7 +168,7 @@ $messages = [
             </div>
             <span class="badge badge-<?= $p['operateur']==='Physique'?'grey':'primary' ?>"><?= $p['operateur'] ?></span>
             <span class="badge badge-<?= $p['statut']==='confirme'?'accent':'warning' ?>">
-              <?= $p['statut']==='confirme' ? '✅ Confirmé' : '⏳ En attente' ?>
+              <?= $p['statut']==='confirme' ? ' Confirmé' : '⏳ En attente' ?>
             </span>
           </div>
           <?php endforeach; ?>
@@ -251,3 +254,4 @@ $messages = [
 </script>
 </body>
 </html>
+
