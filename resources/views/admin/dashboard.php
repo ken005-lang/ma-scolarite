@@ -41,24 +41,17 @@
 <body style="background:var(--bg);">
 <?php
 // ── Données simulation ─────────────────────────
-$admin = ['nom' => 'Directeur ITES II Plateaux', 'email' => 'admin@ites.ci', 'role' => 'Super Admin'];
+$admin = ['nom' => 'ITES II Plateaux', 'email' => 'admin@ites.ci', 'role' => 'Super Admin'];
 
-$nbCandidaturesAttente = 3;
-$nbPaiementsAttente    = 3;
+$nbCandidaturesAttente = 1;
+$nbPaiementsAttente    = 1;
 $nbMessagesNonLus      = 5;
 
 $candidatures = [
   ['id'=>1,'nom'=>'KOUAMÉ Aya Marie',  'filiere'=>'Informatique','date'=>'10 juin 2026','statut'=>'en_attente','email'=>'kouame.aya@email.ci','tel'=>'+225 07 58 23 41 00','naissance'=>'14 mars 2004','lieu_naiss'=>'Abidjan','residence'=>'Cocody','formation'=>'Baccalauréat C','diplome'=>'Bac C','etat'=>'Affectée État','doc'=>'CNI.pdf','lettre'=>'Lettre_motivation.pdf','resp'=>'KOUAMÉ Jean (Père) — +225 05 44 12 88 00'],
-  ['id'=>2,'nom'=>'DIABATÉ Aminata',   'filiere'=>'Mécatronique','date'=>'05 juin 2026','statut'=>'en_attente','email'=>'diabate.a@email.ci','tel'=>'+225 05 12 34 56 78','naissance'=>'02 août 2003','lieu_naiss'=>'Bouaké','residence'=>'Yopougon','formation'=>'BTS Maintenance','diplome'=>'BTS','etat'=>'Non affectée','doc'=>'CMU.pdf','lettre'=>null,'resp'=>'DIABATÉ Sékou (Père) — +225 07 11 22 33 44'],
-  ['id'=>3,'nom'=>'N\'GORAN Paul',     'filiere'=>'Finance','date'=>'08 juin 2026','statut'=>'acceptee','email'=>'ngoran.paul@email.ci','tel'=>'+225 01 23 45 67 89','naissance'=>'20 janv. 2002','lieu_naiss'=>'Yamoussoukro','residence'=>'Plateau','formation'=>'BTS Comptabilité','diplome'=>'BTS','etat'=>'Non affecté','doc'=>'CNI.pdf','lettre'=>'Lettre.pdf','resp'=>'N\'GORAN Marie (Mère) — +225 07 98 76 54 32'],
-  ['id'=>4,'nom'=>'YAO Christelle',    'filiere'=>'Communication','date'=>'01 juin 2026','statut'=>'acceptee','email'=>'yao.christelle@email.ci','tel'=>'+225 07 55 66 77 88','naissance'=>'07 sept. 2003','lieu_naiss'=>'Abidjan','residence'=>'Marcory','formation'=>'Baccalauréat A','diplome'=>'Bac A','etat'=>'Non affectée','doc'=>'Récépissé.pdf','lettre'=>null,'resp'=>'YAO Sylvain (Père) — +225 05 33 44 55 66'],
-  ['id'=>5,'nom'=>'COULIBALY Marc',    'filiere'=>'Communication','date'=>'02 juin 2026','statut'=>'refusee','email'=>'coulibaly.m@email.ci','tel'=>'+225 07 12 12 12 12','naissance'=>'15 mai 2001','lieu_naiss'=>'Man','residence'=>'Adjamé','formation'=>'BTS Marketing','diplome'=>'BTS','etat'=>'Non affecté','doc'=>'CNI.pdf','lettre'=>null,'resp'=>'COULIBALY Adama (Père) — +225 05 21 43 65 87'],
 ];
-
 $paiementsPhysiques = [
   ['id'=>1,'nom'=>'KOUASSI Ama','mat'=>'MAT-2026-0031','ref'=>'NSIA-2026-00312','montant'=>90000],
-  ['id'=>2,'nom'=>'BAMBA Seydou','mat'=>'MAT-2026-0018','ref'=>'UBA-2026-00189','montant'=>110000],
-  ['id'=>3,'nom'=>'TRAORÉ Fatou','mat'=>'MAT-2026-0007','ref'=>'NSIA-2026-00075','montant'=>75000],
 ];
 
 $barData = [
@@ -90,14 +83,6 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
     <nav class="sb-nav">
       <a href="/admin/dashboard" class="sb-item <?= $vueCourante==='dashboard'?'active':'' ?>">
         Tableau de bord
-      </a>
-      <a href="/admin/dashboard?vue=messagerie" class="sb-item <?= $vueCourante==='messagerie'?'active':'' ?>">
-        Candidatures
-        <span class="badge-notif"><?= $nbCandidaturesAttente ?></span>
-      </a>
-      <a href="#" class="sb-item" onclick="showToast('Section Paiements')">
-        Paiements
-        <span class="badge-notif"><?= $nbPaiementsAttente ?></span>
       </a>
       <a href="#" class="sb-item" onclick="showToast('Section Étudiants')">
         Étudiants
@@ -164,15 +149,12 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
         </div>
       </div>
 
-      <!-- ACTIONS RAPIDES -->
+      <!-- ACTIONS RAPIDES (simplifiées) -->
       <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
         <button class="btn btn-primary btn-sm" onclick="showToast('Sélectionner un étudiant pour attribuer son matricule')">🎓 Attribuer un matricule</button>
-        <button class="btn btn-accent btn-sm"  onclick="window.location='/admin/dashboard?vue=messagerie'">✅ Valider un paiement physique</button>
-        <button class="btn btn-warning btn-sm" onclick="showToast('📣 Relances envoyées aux étudiants en retard !','success')">📣 Envoyer relances impayés</button>
-        <button class="btn btn-ghost btn-sm"   onclick="showToast('📊 Export CSV généré et téléchargé','success')">⬇ Exporter données CSV</button>
       </div>
 
-      <div class="two-col">
+      <div class="two-col" style="grid-template-columns: 1fr 380px;">
 
         <!-- Graphique revenus -->
         <div class="card">
@@ -192,7 +174,7 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
           </div>
         </div>
 
-        <!-- Paiements physiques à valider -->
+        <!-- Paiements physiques à valider (restauré) -->
         <div class="card">
           <div class="card-title">Paiements physiques à valider</div>
           <div class="card-divider"></div>
@@ -200,16 +182,17 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
           <div class="paiement-row">
             <div>
               <div style="font-weight:600;font-size:13px;color:var(--dark);"><?= $p['nom'] ?></div>
-              <div style="font-size:11px;color:var(--grey-600);"><?= $p['mat'] ?> · <span class="badge badge-grey"><?= $p['ref'] ?></span></div>
+              <div style="font-size:11px;color:var(--grey-600);">
+                <?= $p['mat'] ?> · <span class="badge badge-grey"><?= $p['ref'] ?></span>
+              </div>
             </div>
-            <div style="font-weight:700;font-size:14px;color:var(--dark);"><?= number_format($p['montant'],0,',',' ') ?> FCFA</div>
-            <button class="btn btn-accent btn-sm"
-                    onclick="validerPaiement(<?= $p['id'] ?>, '<?= $p['nom'] ?>', this)">
-              ✅ Valider
-            </button>
+            <div>
+              <a href="/admin/paiements/<?= $p['id'] ?>" class="btn btn-ghost btn-sm">Voir</a>
+            </div>
           </div>
           <?php endforeach; ?>
         </div>
+
       </div>
 
       <!-- Table candidatures -->
@@ -289,6 +272,9 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
         </div>
         <div class="tab" data-target="panel-physiques">
           🏦 Paiements physiques <span class="tab-badge"><?= $nbPaiementsAttente ?></span>
+        </div>
+        <div class="tab" data-target="panel-digital">
+          💳 Paiements digitaux <span class="tab-badge">94</span>
         </div>
       </div>
 
@@ -465,7 +451,9 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
                     <div class="td-sub"><?= $p['mat'] ?></div>
                   </td>
                   <td><span class="badge badge-grey"><?= $p['ref'] ?></span></td>
-                  <td style="font-weight:700;"><?= number_format($p['montant'],0,',',' ') ?> FCFA</td>
+                  <td style="font-weight:700;">
+                    <input type="text" class="form-input" placeholder="EX: 90 000" />
+                  </td>
                   <td style="font-size:12px;color:var(--grey-600);">11 juin 2026</td>
                   <td style="display:flex;gap:8px;">
                     <button class="btn btn-accent btn-sm" onclick="validerPaiement(<?= $p['id'] ?>,'<?= $p['nom'] ?>',this)">✅ Valider</button>
@@ -476,6 +464,15 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+
+      <!-- PANEL PAIEMENTS DIGITAUX (placeholder) -->
+      <div id="panel-digital" class="tab-panel hidden">
+        <div class="card">
+          <div class="card-title">Paiements digitaux</div>
+          <div class="card-divider"></div>
+          <div style="padding:16px;color:var(--grey-600);">Aucun paiement digital à traiter pour le moment.</div>
         </div>
       </div>
 
