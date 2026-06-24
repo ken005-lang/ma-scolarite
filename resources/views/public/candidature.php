@@ -338,7 +338,7 @@
       <div class="form-nav">
         <button type="button" class="btn btn-ghost" onclick="prevStep()">← Retour</button>
         <button type="submit" class="btn btn-accent">
-          ✅ Soumettre ma candidature
+           Soumettre ma candidature
         </button>
       </div>
     </div>
@@ -359,7 +359,7 @@
   ['doc_identite_input','lettre_input'].forEach(id => {
     document.getElementById(id)?.addEventListener('change', function() {
       const nameEl = document.getElementById(id.replace('_input','_name'));
-      if (nameEl && this.files[0]) nameEl.textContent = '✅ ' + this.files[0].name;
+      if (nameEl && this.files[0]) nameEl.textContent = ' ' + this.files[0].name;
     });
   });
 
@@ -386,3 +386,4 @@
 </script>
 </body>
 </html>
+

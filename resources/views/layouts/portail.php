@@ -76,7 +76,7 @@
     <!-- Flash messages -->
     <?php if (!empty($_SESSION['success'])): ?>
       <div class="alert alert-success" style="margin:16px 36px 0;">
-        <span>✅</span> <?= htmlspecialchars($_SESSION['success']) ?>
+        <span></span> <?= htmlspecialchars($_SESSION['success']) ?>
       </div>
       <?php unset($_SESSION['success']); ?>
     <?php endif; ?>
@@ -114,3 +114,4 @@
 <?= $scripts ?? '' ?>
 </body>
 </html>
+

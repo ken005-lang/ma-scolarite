@@ -27,7 +27,7 @@ php -S localhost:8000 index.php
 # http://localhost:8000
 ```
 
-> ✅ C'est tout. Aucune installation npm, composer ou base de données requise pour la simulation.
+>  C'est tout. Aucune installation npm, composer ou base de données requise pour la simulation.
 
 ---
 
@@ -110,7 +110,7 @@ ma-scolarite/
 2. Se connecter avec `admin@esca.ci` / `Admin@2026`
 3. Aller dans **Candidatures** (menu sidebar)
 4. Cliquer sur **KOUAMÉ Aya Marie** → examiner le dossier
-5. Cliquer **"✅ Accepter la candidature"** → toast de confirmation
+5. Cliquer **" Accepter la candidature"** → toast de confirmation
 
 ### Scénario C — "L'étudiant paie" (4 min)
 1. Aller sur `http://localhost:8000/portail/connexion`
@@ -125,7 +125,7 @@ ma-scolarite/
 ### Scénario D — "Validation paiement physique" (2 min)
 1. Dans le dashboard admin → cliquer **"Paiements physiques"** (onglet messagerie)
 2. Voir les 3 paiements en attente
-3. Cliquer **"✅ Valider"** sur KOUASSI Ama → confirmation dialog → toast succès
+3. Cliquer **" Valider"** sur KOUASSI Ama → confirmation dialog → toast succès
 
 ---
 
@@ -169,3 +169,4 @@ Ctrl + `  →  cd public  →  php -S localhost:8000 index.php
 
 *Projet réalisé dans le cadre d'un mémoire de Licence Informatique*
 *Thème : La digitalisation du suivi de la scolarité — Côte d'Ivoire, 2026*
+

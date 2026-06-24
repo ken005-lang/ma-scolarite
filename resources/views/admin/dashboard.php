@@ -1,3 +1,4 @@
+<?php setlocale(LC_TIME, 'fr_FR.UTF-8'); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -45,7 +46,7 @@ $admin = ['nom' => 'ITES II Plateaux', 'email' => 'admin@ites.ci', 'role' => 'Su
 
 $nbCandidaturesAttente = 1;
 $nbPaiementsAttente    = 1;
-$nbMessagesNonLus      = 5;
+$nbMessagesNonLus      = 99;
 
 $candidatures = [
   ['id'=>1,'nom'=>'KOUAMÉ Aya Marie',  'filiere'=>'Informatique','date'=>'10 juin 2026','statut'=>'en_attente','email'=>'kouame.aya@email.ci','tel'=>'+225 07 58 23 41 00','naissance'=>'14 mars 2004','lieu_naiss'=>'Abidjan','residence'=>'Cocody','formation'=>'Baccalauréat C','diplome'=>'Bac C','etat'=>'Affectée État','doc'=>'CNI.pdf','lettre'=>'Lettre_motivation.pdf','resp'=>'KOUAMÉ Jean (Père) — +225 05 44 12 88 00'],
@@ -60,7 +61,7 @@ $barData = [
   ['mois'=>'Mar','val'=>1100,'h'=>108],
   ['mois'=>'Avr','val'=>980,'h'=>96],
   ['mois'=>'Mai','val'=>1050,'h'=>103],
-  ['mois'=>'Jun','val'=>1240,'h'=>124,'accent'=>true],
+  ['mois'=>'Juin','val'=>1240,'h'=>124,'accent'=>true],
 ];
 
 $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
@@ -88,7 +89,7 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
         Étudiants
       </a>
       <a href="#" class="sb-item" onclick="showToast('Section Documents')">
-        Documents
+        Documents et décisions administratives
       </a>
       <a href="/admin/dashboard?vue=messagerie" class="sb-item">
         Messagerie
@@ -109,7 +110,7 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
         <?= $vueCourante==='messagerie' ? 'Messagerie — Administration' : 'Tableau de bord — Administration' ?>
       </span>
       <div class="topbar-right">
-        <span class="topbar-date">📅 <?= date('d F Y') ?></span>
+        <span class="topbar-date">📅 <?= (new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE, null, null, 'dd MMMM yyyy'))->format(new DateTime()) ?></span>
         <span class="badge badge-primary">Super Admin</span>
       </div>
     </div>
@@ -236,8 +237,8 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
                   };
                   $badgeLabel = match($c['statut']) {
                     'en_attente' => '⏳ En attente',
-                    'acceptee'   => '✅ Acceptée',
-                    'refusee'    => '❌ Refusée',
+                    'acceptee'   => ' Acceptée',
+                    'refusee'    => ' Refusée',
                     default      => '—'
                   };
                   ?>
@@ -300,7 +301,7 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
               </div>
               <?php
               $bc2 = match($c['statut']) { 'en_attente'=>'badge-warning','acceptee'=>'badge-accent','refusee'=>'badge-danger',default=>'badge-grey'};
-              $bl2 = match($c['statut']) { 'en_attente'=>'⏳','acceptee'=>'✅','refusee'=>'❌',default=>'—'};
+              $bl2 = match($c['statut']) { 'en_attente'=>'⏳','acceptee'=>'','refusee'=>'',default=>'—'};
               ?>
               <span class="badge <?= $bc2 ?>"><?= $bl2 ?></span>
             </div>
@@ -313,7 +314,7 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
           foreach($candidatures as $c) { if($c['id']===$selectedId){ $selected=$c; break; } }
           if(!$selected) $selected=$candidatures[0];
           $bc3 = match($selected['statut']) { 'en_attente'=>'badge-warning','acceptee'=>'badge-accent','refusee'=>'badge-danger',default=>'badge-grey'};
-          $bl3 = match($selected['statut']) { 'en_attente'=>'⏳ En attente','acceptee'=>'✅ Acceptée','refusee'=>'❌ Refusée',default=>'—'};
+          $bl3 = match($selected['statut']) { 'en_attente'=>'⏳ En attente','acceptee'=>' Acceptée','refusee'=>' Refusée',default=>'—'};
           ?>
           <div class="detail-panel">
 
@@ -376,10 +377,10 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
             <?php if($selected['statut']==='en_attente'): ?>
             <div class="action-btns">
               <button class="btn btn-accent" onclick="actionCandidature('accepter', <?= $selected['id'] ?>, '<?= addslashes($selected['nom']) ?>')">
-                ✅ Accepter la candidature
+                 Accepter la candidature
               </button>
               <button class="btn btn-danger" onclick="actionCandidature('refuser', <?= $selected['id'] ?>, '<?= addslashes($selected['nom']) ?>')">
-                ❌ Refuser
+                 Refuser
               </button>
               <button class="btn btn-ghost" onclick="actionCandidature('attente', <?= $selected['id'] ?>, '<?= addslashes($selected['nom']) ?>')">
                 ⏸ Mettre en attente
@@ -387,7 +388,7 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
             </div>
             <?php else: ?>
             <div class="alert alert-<?= $selected['statut']==='acceptee'?'success':'danger' ?>" style="margin-top:16px;">
-              <span><?= $selected['statut']==='acceptee'?'✅':'❌' ?></span>
+              <span><?= $selected['statut']==='acceptee'?'':'' ?></span>
               <span>Cette candidature a déjà été <strong><?= $selected['statut']==='acceptee'?'acceptée':'refusée' ?></strong>.</span>
             </div>
             <?php endif; ?>
@@ -428,7 +429,7 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
           <div class="card-divider"></div>
           <textarea class="form-input form-textarea" rows="2" placeholder="Répondre à l'étudiant sélectionné…"></textarea>
           <div style="margin-top:10px;">
-            <button class="btn btn-primary btn-sm" onclick="showToast('Réponse envoyée à l\'étudiant ✅','success')">✉️ Envoyer la réponse</button>
+            <button class="btn btn-primary btn-sm" onclick="showToast('Réponse envoyée à l\'étudiant ','success')">✉️ Envoyer la réponse</button>
           </div>
         </div>
       </div>
@@ -456,8 +457,8 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
                   </td>
                   <td style="font-size:12px;color:var(--grey-600);">11 juin 2026</td>
                   <td style="display:flex;gap:8px;">
-                    <button class="btn btn-accent btn-sm" onclick="validerPaiement(<?= $p['id'] ?>,'<?= $p['nom'] ?>',this)">✅ Valider</button>
-                    <button class="btn btn-danger btn-sm"  onclick="rejeterPaiement('<?= $p['nom'] ?>')">❌ Rejeter</button>
+                    <button class="btn btn-accent btn-sm" onclick="validerPaiement(<?= $p['id'] ?>,'<?= $p['nom'] ?>',this)"> Valider</button>
+                    <button class="btn btn-danger btn-sm"  onclick="rejeterPaiement('<?= $p['nom'] ?>')"> Rejeter</button>
                   </td>
                 </tr>
                 <?php endforeach; ?>
@@ -490,15 +491,15 @@ function validerPaiement(id, nom, btn) {
   btn.disabled = true;
   btn.textContent = '⏳…';
   setTimeout(() => {
-    btn.textContent = '✅ Validé';
+    btn.textContent = ' Validé';
     btn.style.background = 'var(--accent)';
-    showToast(`✅ Paiement de ${nom} validé ! Email de confirmation envoyé.`, 'success', 5000);
+    showToast(` Paiement de ${nom} validé ! Email de confirmation envoyé.`, 'success', 5000);
   }, 1200);
 }
 
 function rejeterPaiement(nom) {
   if (!confirm(`Rejeter le paiement de ${nom} ?`)) return;
-  showToast(`❌ Paiement de ${nom} rejeté. L'étudiant a été notifié.`, 'danger');
+  showToast(` Paiement de ${nom} rejeté. L'étudiant a été notifié.`, 'danger');
 }
 
 function actionCandidature(action, id, nom) {
@@ -506,9 +507,10 @@ function actionCandidature(action, id, nom) {
   const labels = { accepter:'acceptée', refuser:'refusée', attente:'mise en attente' };
   if (!confirm(`Confirmer : candidature de ${nom} sera ${labels[action]} ?`)) return;
   const toastType = action==='accepter'?'success': action==='refuser'?'danger':'default';
-  showToast(`✅ Candidature de ${nom} ${labels[action]}. Email envoyé automatiquement.`, toastType, 6000);
+  showToast(` Candidature de ${nom} ${labels[action]}. Email envoyé automatiquement.`, toastType, 6000);
   setTimeout(() => window.location.reload(), 2000);
 }
 </script>
 </body>
 </html>
+

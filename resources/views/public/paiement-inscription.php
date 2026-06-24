@@ -183,14 +183,14 @@
 <!-- ══ PAGE CONFIRMATION (cachée par défaut) ══ -->
 <div id="page-confirmation" style="display:none;">
   <div class="confirmation-card">
-    <div class="confirmation-icon">✅</div>
+    <div class="confirmation-icon"></div>
     <div class="confirmation-title">Paiement confirmé !</div>
     <div class="confirmation-sub">
       Votre paiement de <strong>140 000 FCFA</strong> a été reçu et enregistré.<br>
       Référence : <strong>SCO-ETU0001-INSCR-2026</strong>
     </div>
     <div class="ref-box" style="margin-bottom:24px;">
-      <div class="ref-code">✅ Dossier complet</div>
+      <div class="ref-code"> Dossier complet</div>
       <div class="ref-hint">Votre matricule vous sera attribué et envoyé par email sous 24h.</div>
     </div>
     <p style="font-size:13px;color:var(--grey-600);margin-bottom:24px;">
@@ -244,8 +244,9 @@
   function soumettreRefBancaire() {
     const ref = document.getElementById('ref_bancaire').value.trim();
     if (!ref) { showToast('Veuillez entrer votre référence bancaire.', 'danger'); return; }
-    showToast('✅ Référence soumise ! L\'administration vérifiera sous 24h.', 'success', 5000);
+    showToast(' Référence soumise ! L\'administration vérifiera sous 24h.', 'success', 5000);
   }
 </script>
 </body>
 </html>
+

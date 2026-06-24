@@ -58,7 +58,7 @@ const FAQ = [
   },
   {
     mots: ['soldée', 'fini', 'terminé', '100%', 'tout payé', 'completé'],
-    rep: '✅ Quand votre scolarité est entièrement soldée, votre barre de progression atteint 100% et vous recevez un email de confirmation. Le statut passe à "Scolarité soldée".'
+    rep: ' Quand votre scolarité est entièrement soldée, votre barre de progression atteint 100% et vous recevez un email de confirmation. Le statut passe à "Scolarité soldée".'
   },
   {
     mots: ['filière', 'informatique', 'finance', 'communication', 'mécatronique', 'choisir'],
@@ -222,7 +222,7 @@ function initDocumentObligatoire() {
       inscribeBtn.style.animation = 'toastIn .4s ease';
     }
     if (note) note.classList.add('hidden');
-    showToast('✅ Document téléchargé ! Vous pouvez maintenant vous inscrire.', 'success');
+    showToast(' Document téléchargé ! Vous pouvez maintenant vous inscrire.', 'success');
   });
 }
 
@@ -267,7 +267,7 @@ function simulerPaiement(reference, montant) {
 
     // Dans une vraie app : appel AJAX vers /portail/paiement/simuler/{reference}
     // Ici on simule visuellement
-    showToast(`✅ Paiement de ${montant} FCFA confirmé ! Référence : ${reference}`, 'success', 5000);
+    showToast(` Paiement de ${montant} FCFA confirmé ! Référence : ${reference}`, 'success', 5000);
 
     // Mettre à jour la barre de progression visuellement
     const fill = document.querySelector('.progress-fill');
@@ -278,7 +278,7 @@ function simulerPaiement(reference, montant) {
       document.querySelector('.progress-pct').textContent = ajout + '%';
     }
 
-    btn.textContent = '✅ Paiement simulé avec succès';
+    btn.textContent = ' Paiement simulé avec succès';
     btn.style.background = 'var(--accent)';
 
     // Rediriger après 2s
@@ -415,3 +415,4 @@ document.addEventListener('DOMContentLoaded', function () {
   initPhotoPreview();
   initSuggestions();
 });
+

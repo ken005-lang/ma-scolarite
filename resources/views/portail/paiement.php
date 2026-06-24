@@ -1,3 +1,4 @@
+<?php setlocale(LC_TIME, 'fr_FR.UTF-8'); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -37,7 +38,7 @@
 <body style="background:var(--bg);">
 <?php
 $etudiant = [
-  'nom'           => 'CAPE',
+  'nom'           => 'CAPÉ',
   'prenom'        => 'Kenania',
   'matricule'     => 'MAT-2026-0042',
   'filiere'       => 'Informatique',
@@ -58,7 +59,7 @@ $nbMessagesNonLus = 1;
     </div>
     <div class="sb-user">
       <div class="sb-avatar">🎓</div>
-      <div class="sb-name"><?= $etudiant['prenom'].' '.$etudiant['nom'] ?></div>
+      <div class="sb-name"><?= $etudiant['nom'].' '.$etudiant['prenom'] ?></div>
       <div class="sb-mat"><?= $etudiant['matricule'] ?></div>
       <span class="sb-role"><?= $etudiant['niveau'] ?></span>
     </div>
@@ -85,7 +86,7 @@ $nbMessagesNonLus = 1;
     <div class="topbar">
       <span class="topbar-title">Payer ma scolarité</span>
       <div class="topbar-right">
-        <span class="topbar-date">📅 <?= date('d F Y') ?></span>
+        <span class="topbar-date">📅 <?= strftime('%d %B %Y') ?></span>
         <span class="badge badge-warning">Solde restant : <?= number_format($montant_restant,0,',',' ') ?> FCFA</span>
       </div>
     </div>
@@ -231,7 +232,7 @@ $nbMessagesNonLus = 1;
             Validez sur votre téléphone pour confirmer le paiement.
           </p>
           <div class="sim-steps">
-            <div class="sim-step done"    id="sim-1"><span class="sim-step-icon">✅</span> Paiement initié</div>
+            <div class="sim-step done"    id="sim-1"><span class="sim-step-icon"></span> Paiement initié</div>
             <div class="sim-step active"  id="sim-2"><span class="sim-step-icon">⏳</span> En attente de confirmation OTP</div>
             <div class="sim-step pending" id="sim-3"><span class="sim-step-icon">📧</span> Mise à jour du solde</div>
             <div class="sim-step pending" id="sim-4"><span class="sim-step-icon">✉️</span> Envoi email de confirmation</div>
@@ -245,7 +246,7 @@ $nbMessagesNonLus = 1;
       <!-- VUE SUCCÈS (cachée par défaut) -->
       <div id="vue-succes" style="display:none;max-width:560px;margin:0 auto;">
         <div class="card" style="text-align:center;padding:48px 32px;">
-          <div style="font-size:64px;margin-bottom:16px;animation:toastIn .5s ease;">✅</div>
+          <div style="font-size:64px;margin-bottom:16px;animation:toastIn .5s ease;"></div>
           <h2 style="font-size:24px;font-weight:700;margin-bottom:8px;color:var(--accent);">Paiement confirmé !</h2>
           <p style="font-size:15px;color:var(--grey-600);margin-bottom:24px;">
             Votre versement a été enregistré avec succès.
@@ -348,17 +349,17 @@ function simulerConfirmation() {
   // Animer les étapes
   setTimeout(() => {
     document.getElementById('sim-2').className = 'sim-step done';
-    document.getElementById('sim-2').querySelector('.sim-step-icon').textContent = '✅';
+    document.getElementById('sim-2').querySelector('.sim-step-icon').textContent = '';
     document.getElementById('sim-3').className = 'sim-step active';
   }, 1000);
   setTimeout(() => {
     document.getElementById('sim-3').className = 'sim-step done';
-    document.getElementById('sim-3').querySelector('.sim-step-icon').textContent = '✅';
+    document.getElementById('sim-3').querySelector('.sim-step-icon').textContent = '';
     document.getElementById('sim-4').className = 'sim-step active';
   }, 2200);
   setTimeout(() => {
     document.getElementById('sim-4').className = 'sim-step done';
-    document.getElementById('sim-4').querySelector('.sim-step-icon').textContent = '✅';
+    document.getElementById('sim-4').querySelector('.sim-step-icon').textContent = '';
   }, 3200);
 
   setTimeout(() => {
@@ -377,7 +378,7 @@ function simulerConfirmation() {
 function soumettreRefBancaire() {
   const ref = document.getElementById('ref_bancaire').value.trim();
   if (!ref) { showToast('Entrez votre référence bancaire.', 'danger'); return; }
-  showToast('✅ Référence bancaire soumise ! Validation sous 24h.', 'success', 5000);
+  showToast(' Référence bancaire soumise ! Validation sous 24h.', 'success', 5000);
 }
 
 document.getElementById('chatbot-trigger-link')?.addEventListener('click', e => {
@@ -387,3 +388,4 @@ document.getElementById('chatbot-trigger-link')?.addEventListener('click', e => 
 </script>
 </body>
 </html>
+

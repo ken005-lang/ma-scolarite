@@ -32,13 +32,13 @@
 <!-- FLASH MESSAGES -->
 <?php if (!empty($_SESSION['success'])): ?>
   <div class="alert alert-success" style="margin:16px 64px;">
-    <span>✅</span> <?= htmlspecialchars($_SESSION['success']) ?>
+    <span></span> <?= htmlspecialchars($_SESSION['success']) ?>
   </div>
   <?php unset($_SESSION['success']); ?>
 <?php endif; ?>
 <?php if (!empty($_SESSION['error'])): ?>
   <div class="alert alert-danger" style="margin:16px 64px;">
-    <span>❌</span> <?= htmlspecialchars($_SESSION['error']) ?>
+    <span></span> <?= htmlspecialchars($_SESSION['error']) ?>
   </div>
   <?php unset($_SESSION['error']); ?>
 <?php endif; ?>
@@ -62,3 +62,4 @@
 <?= $scripts ?? '' ?>
 </body>
 </html>
+
