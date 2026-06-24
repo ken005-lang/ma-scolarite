@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Administration — Ma Scolarité</title>
   <link rel="stylesheet" href="/css/app.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>"/>
+</head>
   <style>
     .auth-tabs { display:flex; gap:0; margin-bottom:28px; border-bottom:2px solid var(--grey-100); }
     .auth-tab {

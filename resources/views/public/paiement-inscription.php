@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Paiement des frais d'inscription — Ma Scolarité</title>
   <link rel="stylesheet" href="/css/app.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>"/>
+</head>
   <style>
     .pay-page { max-width: 1060px; margin: 0 auto; padding: 32px 24px 80px; }
     .pay-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
