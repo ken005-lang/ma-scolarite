@@ -127,7 +127,7 @@
         <span class="badge badge-grey">Génie Civil</span>
         <span class="badge badge-grey">Maintenance</span>
       </div>
-      <button class="school-card-btn btn-inactive" disabled>Bientôt disponible</button>
+      <button class="school-card-btn btn-inactive" disabled>Accéder à l'école →</button>
     </div>
 
     <!-- ISCOM — Inactive -->
@@ -144,7 +144,7 @@
         <span class="badge badge-grey">Journalisme</span>
         <span class="badge badge-grey">Marketing Digital</span>
       </div>
-      <button class="school-card-btn btn-inactive" disabled>Bientôt disponible</button>
+      <button class="school-card-btn btn-inactive" disabled>Accéder à l'école →</button>
     </div>
 
   </div>

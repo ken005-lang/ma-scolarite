@@ -151,9 +151,9 @@ $vueCourante = $_GET['vue'] ?? 'dashboard'; // dashboard | messagerie
       </div>
 
       <!-- ACTIONS RAPIDES (simplifiées) -->
-      <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
+      <!--<div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
         <button class="btn btn-primary btn-sm" onclick="showToast('Sélectionner un étudiant pour attribuer son matricule')">🎓 Attribuer un matricule</button>
-      </div>
+      </div>-->
 
       <div class="two-col" style="grid-template-columns: 1fr 380px;">
 
