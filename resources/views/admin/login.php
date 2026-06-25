@@ -28,7 +28,6 @@
     <div style="font-size:52px;margin-bottom:24px;">⚙️</div>
     <h1>Administration</h1>
     <p>
-      Espace réservé à l'équipe administrative de l'ITES II Plateaux.
       Gérez les candidatures, validez les paiements, suivez les recouvrements
       et communiquez avec les étudiants.
     </p>
@@ -68,7 +67,7 @@
         <form onsubmit="return handleAdminLogin(event)">
           <div style="display:flex;flex-direction:column;gap:18px;">
             <div class="form-group">
-              <label class="form-label">Adresse email</label>
+              <label class="form-label">Adresse email professionnelle</label>
               <input class="form-input" type="email" id="admin-email" placeholder="admin@ites.ci"/>
             </div>
             <div class="form-group">
@@ -91,19 +90,20 @@
           <div style="display:flex;flex-direction:column;gap:16px;">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
               <div class="form-group">
-                <label class="form-label">Nom</label>
+                <label class="form-label">Nom de l'établissement</label>
                 <input class="form-input" type="text" placeholder="Votre nom"/>
               </div>
-              <div class="form-group">
+              <!--<div class="form-group">
                 <label class="form-label">Prénom</label>
                 <input class="form-input" type="text" placeholder="Votre prénom"/>
               </div>
-            </div>
+            </div>-->
+            <br>
             <div class="form-group">
               <label class="form-label">Adresse email professionnelle</label>
               <input class="form-input" type="email" placeholder="votre@ites.ci"/>
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
               <label class="form-label">Rôle</label>
               <select class="form-select">
                 <option value="">-- Choisir un rôle --</option>
@@ -111,11 +111,13 @@
                 <option value="secretaire">Secrétaire</option>
                 <option value="comptable">Comptable</option>
               </select>
-            </div>
+            </div>-->
+            <br>
             <div class="form-group">
               <label class="form-label">Mot de passe</label>
               <input class="form-input" type="password" placeholder="Créez un mot de passe sécurisé"/>
             </div>
+            <br>
             <div class="form-group">
               <label class="form-label">Confirmer le mot de passe</label>
               <input class="form-input" type="password" placeholder="Répétez le mot de passe"/>
