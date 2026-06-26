@@ -1,7 +1,10 @@
 <?php
 setlocale(LC_TIME, 'fr_FR.UTF-8');
-$formatter = new IntlDateFormatter('fr_FR.UTF-8', IntlDateFormatter::NONE, IntlDateFormatter::NONE, null, null, 'd F Y');
-$dateFormatee = $formatter->format(new DateTime());
+$mois = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+$jour = date('d');
+$moisNom = $mois[date('n') - 1];
+$annee = date('Y');
+$dateFormatee = "$jour $moisNom $annee";
 ?>
 <!DOCTYPE html>
 <html lang="fr">
