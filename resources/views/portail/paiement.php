@@ -1,4 +1,8 @@
-<?php setlocale(LC_TIME, 'fr_FR.UTF-8'); ?>
+<?php
+setlocale(LC_TIME, 'fr_FR.UTF-8');
+$formatter = new IntlDateFormatter('fr_FR.UTF-8', IntlDateFormatter::NONE, IntlDateFormatter::NONE, null, null, 'd F Y');
+$dateFormatee = $formatter->format(new DateTime());
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -87,7 +91,7 @@ $nbMessagesNonLus = 1;
     <div class="topbar">
       <span class="topbar-title">Payer ma scolarité</span>
       <div class="topbar-right">
-        <span class="topbar-date">📅 <?= strftime('%d %B %Y') ?></span>
+        <span class="topbar-date">📅 <?= $dateFormatee ?></span>
         <span class="badge badge-warning">Solde restant : <?= number_format($montant_restant,0,',',' ') ?> FCFA</span>
       </div>
     </div>
