@@ -40,7 +40,7 @@ $nbMessagesNonLus = 1;
 $etudiant['montant_paye'] = 230000;
 $paiements = [
   ['date'=>'12 avr. 2026','montant'=>110000,'operateur'=>'Wave','statut'=>'confirme'],
-  // Entrée '02 mars 2026' (Orange Money) supprimée sur demande
+  // Entrée '02 mars 2026' (Orange Money) supprimée 
 ];
 $messages = [
   ['from'=>'Administration ITES II Plateaux','text'=>'Rappel : prochaine tranche de 90 000 FCFA due le 30 juin 2026.','time'=>'1 juin','unread'=>true],
@@ -87,6 +87,7 @@ $messages = [
       <div class="topbar-right">
         <span class="topbar-date">📅 <?= (new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE, null, null, 'dd MMMM yyyy'))->format(new DateTime()) ?></span>
         <span class="badge badge-primary"><?= $etudiant['filiere'] ?> — <?= $etudiant['niveau'] ?></span>
+        <span class="badge badge-success">Frais d'inscription validés</span>
       </div>
     </div>
 
